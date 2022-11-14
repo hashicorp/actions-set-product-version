@@ -2,16 +2,16 @@ name: set-product-version
 author: Release Engineering <rel-eng@hashicorp.com>
 description: Automates setting product version
 
-env:
-  VERSION_FILE: ${{ .release/VERSION }}
 
 runs:
   using: composite
 
   steps:
+    - uses: actions/checkout@v3
     - name: Check if Version File Exists
-      uses: actions/checkout@v3
       shell: bash
+      env:
+        VERSION_FILE: ${{ .release/VERSION }}
       run: |
         FILE=$1
         if [ -f ${VERSION_FILE}]; then
@@ -19,9 +19,7 @@ runs:
         else
           echo "File ${VERSION_FILE} does not exist. Please add a VERSION file in the .release/ directory"
         fi
-
     - name: Set Product Version
-      uses: actions/checkout@v3
       shell: bash
       run: |
         product_version=$(<.release/VERSION)
@@ -37,6 +35,5 @@ runs:
         fi
 
     - name: Set output
-      uses: actions/checkout@v3
       shell: bash
       run: echo "{product_version}={product_version}" >> GITHUB_OUTPUT
