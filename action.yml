@@ -13,8 +13,7 @@ runs:
       env:
         VERSION_FILE: .release/VERSION
       run: |
-        FILE=$1
-        if [ -f ${VERSION_FILE}]; then
+        if [ -f $VERSION_FILE ]; then
           echo "File ${VERSION_FILE} exists."
         else
           echo "File ${VERSION_FILE} does not exist. Please add a VERSION file in the .release/ directory"
