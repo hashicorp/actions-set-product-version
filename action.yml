@@ -17,7 +17,7 @@ runs:
         if [ -f ${VERSION_FILE}]; then
           echo "File ${VERSION_FILE} exists."
         else
-          echo "File ${VERSION_FILE} does not exist."
+          echo "File ${VERSION_FILE} does not exist. Please add a VERSION file in the .release/ directory"
         fi
 
     - name: Set Product Version
