@@ -27,4 +27,4 @@ runs:
 
     - name: Set output
       shell: bash
-      run: echo "{product_version}={product_version}" >> GITHUB_OUTPUT
+      run: echo "product-version={product_version}" >> GITHUB_OUTPUT
