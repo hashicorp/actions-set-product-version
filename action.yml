@@ -11,7 +11,7 @@ runs:
     - name: Check if Version File Exists
       shell: bash
       env:
-        VERSION_FILE: ${{ .release/VERSION }}
+        VERSION_FILE: .release/VERSION
       run: |
         FILE=$1
         if [ -f ${VERSION_FILE}]; then
