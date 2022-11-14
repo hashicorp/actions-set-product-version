@@ -22,16 +22,8 @@ runs:
       shell: bash
       run: |
         product_version=$(<.release/VERSION)
-        echo "$product_version"
-        whitespace=" |'"
-
-        if ["$product_version" =~ $whitespace]; then
-          echo "Whitespace detected in version string! Trimming down."
-          echo "$product_version | sed 's/ //g'"
-          product_version=$(echo "$product_version" | sed 's/ //g')
-        else
-          echo "No whitespace found in ${product_version}!"
-        fi
+        product_version=$(echo "$product_version" | sed 's/ //g')
+        echo "Product Version: $product_version"
 
     - name: Set output
       shell: bash
