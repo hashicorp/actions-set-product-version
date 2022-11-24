@@ -32,8 +32,7 @@ runs:
       id: set-base-product-version
       shell: bash
       run: |
-        product_version=$(<.release/VERSION)
-        product_version=$(echo "$product_version" | sed 's/ //g')
+        product_version=${{ steps.set-product-version.outputs.product-version }}
         base_product_version=${product_version%%-*}
         echo "Base Product Version: $base_product_version"
         echo "base-product-version=$base_product_version" >> $GITHUB_OUTPUT
@@ -43,9 +42,11 @@ runs:
       id: set-prerelease-product-version
       shell: bash
       run: |
-        product_version=$(<.release/VERSION)
-        product_version=$(echo "$product_version" | sed 's/ //g')
+        product_version=${{ steps.set-product-version.outputs.product-version }}
         prerelease_product_version=${product_version#*-}
+        if [ $product_version == $prerelease_product_version ]; then
+          prerelease_product_version=""
+        fi
         echo "Prerelease Product Version: $prerelease_product_version"
         echo "prerelease-product-version=$prerelease_product_version" >> $GITHUB_OUTPUT
 
@@ -55,7 +56,7 @@ outputs:
     value: ${{ steps.set-product-version.outputs.product-version }}
   prerelease-product-version:
     description: 'The prerelease portion of the product version'
-    value: ${{ steps.set-product-version.outputs.prerelease-product-version }}
+    value: ${{ steps.set-prerelease-product-version.outputs.prerelease-product-version }}
   base-product-version:
     description: 'The base portion of the product version'
-    value: ${{ steps.set-product-version.outputs.base-product-version }}
+    value: ${{ steps.set-base-product-version.outputs.base-product-version }}
