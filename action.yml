@@ -55,7 +55,7 @@ outputs:
     value: ${{ steps.set-product-version.outputs.product-version }}
   prerelease-product-version:
     description: 'The prerelease portion of the product version'
-    value: ${{ steps.set-product-version.outputs.prerelease-product-version }}
+    value: ${{ steps.set-prerelease-product-version.outputs.prerelease-product-version }}
   base-product-version:
     description: 'The base portion of the product version'
-    value: ${{ steps.set-product-version.outputs.base-product-version }}
+    value: ${{ steps.set-base-product-version.outputs.base-product-version }}
