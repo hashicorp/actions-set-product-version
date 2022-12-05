@@ -11,18 +11,18 @@ runs:
     - name: Check if Version File Exists
       shell: bash
       env:
-        VERSION_FILE: .release/VERSION
+        VERSION_FILE: version/VERSION
       run: |
         if [ -f $VERSION_FILE ]; then
           echo "File ${VERSION_FILE} exists."
         else
-          echo "File ${VERSION_FILE} does not exist. Please add a VERSION file in the .release/ directory"
+          echo "File ${VERSION_FILE} does not exist. Please add a VERSION file in the version/ directory"
         fi
     - name: Set Full Product Version
       id: set-product-version
       shell: bash
       run: |
-        product_version=$(<.release/VERSION)
+        product_version=$(<version/VERSION)
         product_version=$(echo "$product_version" | sed 's/ //g')
         echo "Product Version: $product_version"
         echo "product-version=$product_version" >> $GITHUB_OUTPUT
