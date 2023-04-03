@@ -7,7 +7,7 @@ runs:
   using: composite
 
   steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
     - name: Check if Version File Exists
       shell: bash
       env:
@@ -33,7 +33,7 @@ runs:
       shell: bash
       run: |
         product_version=${{ steps.set-product-version.outputs.product-version }}
-        base_product_version=${product_version%%-*}
+        base_product_version=${product_version%-*}
         echo "Base Product Version: $base_product_version"
         echo "base-product-version=$base_product_version" >> $GITHUB_OUTPUT
     # Examples
