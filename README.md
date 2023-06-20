@@ -6,7 +6,7 @@
 
 THe following describes what this action does: 
 
--  Allows for the static version string from the `version/VERSION` file to be read by the new CRT workflow and automagically be bumped to the next version (whether it bge a minor, or patch, or major version bump). 
+-  Allows for the static version string from the `version/VERSION` file to be read by the new CRT workflow and automagically be bumped to the next version (whether it be a minor, or patch, or major version bump). 
 - Outputs an error if there’s no `VERSION` file in the `version/ dir`
 - Outputs an error if there’s no version string in the VERSION file
 - Is able to parse `product_version` if it is `1.3.0-alpha1` as `1.3.0` (example: when `product_version = 1.3.0-alpha1`, `base_version = 1.3.0`)
