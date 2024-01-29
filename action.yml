@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 name: set-product-version
 author: Release Engineering <rel-eng@hashicorp.com>
 description: Automates setting product version
