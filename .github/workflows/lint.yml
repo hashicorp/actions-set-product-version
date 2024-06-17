@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: super linter
-        uses: github/super-linter/slim@45fc0d88288beee4701c62761281edfee85655d7 # v5.0.0
+        uses: github/super-linter/slim@e0fc164bba85f4b58c6cd17ba1dfd435d01e8a06 # v6.3.0
