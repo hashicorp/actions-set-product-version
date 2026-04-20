@@ -2,6 +2,9 @@ name: Lint
 
 on:
   pull_request:
+permissions:
+  contents: read       # Required to checkout the code
+  statuses: write      # Required for Super-Linter to post the "Success/Failure" checkmark
 
 jobs:
   lint:
