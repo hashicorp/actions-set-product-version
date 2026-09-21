@@ -2,11 +2,12 @@
 [![Heimdall](https://heimdall.hashicorp.services/api/v1/assets/actions-set-product-version/badge.svg?key=195370081cbf50568fa41066c157e122a929e253ffa3f7e9b377c73433d31061)](https://heimdall.hashicorp.services/site/assets/actions-set-product-version) [![CI](https://github.com/hashicorp/actions-set-product-version/actions/workflows/lint.yml/badge.svg)](https://github.com/hashicorp/actions-set-product-version/actions/workflows/lint.yml)
 
 ## Description
-`actions-set-product-version` is a Github action that acts as a bridge between the product repo and our new CRT feature: [automated version bumping](https://github.com/hashicorp/bob/commit/6813d9757c644679193a0af317e99570ac8cc848). This action should be used in the `build.yml` to parse the `version/VERSION` file that lives in all product repos. 
 
-The following describes what this action does: 
+`actions-set-product-version` is a GitHub action that acts as a bridge between the product repository and our new CRT feature: [automated version bumping](https://github.com/hashicorp/bob/commit/6813d9757c644679193a0af317e99570ac8cc848). This action should be used in the `build.yml` to parse the `version/VERSION` file that lives in all product repositories.
 
--  Allows for the static version string from the `version/VERSION` file to be read by the new CRT workflow and automagically be bumped to the next version (whether it be a minor, or patch, or major version bump). 
+The following describes what this action does:
+
+- Allows for the static version string from the `version/VERSION` file to be read by the new CRT workflow and automagically be bumped to the next version (whether it be a minor, or patch, or major version bump).
 - Outputs an error if there's no `VERSION` file at the specified location
 - Outputs an error if there's no version string in the VERSION file
 - Is able to parse `product_version` if it is `1.3.0-alpha1` as `1.3.0` (example: when `product_version = 1.3.0-alpha1`, `base_version = 1.3.0`)
@@ -20,8 +21,10 @@ The following describes what this action does:
 | `version-file` | No | `version/VERSION` | Path to the VERSION file. For multi-product repos, specify the per-product VERSION file path (e.g., `cmd/secrets-kv/VERSION`). |
 
 ## Outputs
-Note that the `version/VERSION` version should never contain metadata - only release version and prerelease information. 
+
+Note that the `version/VERSION` version should never contain metadata - only release version and prerelease information.
 This action has four outputs from parsing the release/prerelease information:
+
 - `product-version` (full product version string: eg. `1.0.0-dev`)
 - `base-product-version` (product version stripped of prerelease information: eg. `1.0.0`)
 - `prerelease-product-version` (prerelease information `dev`)
@@ -30,7 +33,8 @@ This action has four outputs from parsing the release/prerelease information:
 ## Use
 
 ### Single-Product Repos (default)
-This action should be implemented in product repo `build.yml` files. The action is intended to grab the version from the version file at the beginning of the build, then passes those versions (along with metadata, where necessary) to any workflow jobs that need version information.
+
+This action should be implemented in product repository `build.yml` files. The action is intended to grab the version from the version file at the beginning of the build, then passes those versions (along with metadata, where necessary) to any workflow jobs that need version information.
 
 ```yaml
 jobs:
@@ -73,5 +77,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building version ${{ needs.set-product-version.outputs.product-version }}"
-``` 
+```
 
